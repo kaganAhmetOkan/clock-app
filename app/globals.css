@@ -1,6 +1,11 @@
 :root {
   --fg: #111;
   --bg: #eee;
+  --btn-primary: #7a856b;
+  --btn-secondary: #e3e8e3;
+  --accent: #77c66a;
+
+  --body-padding: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,8 +21,12 @@ html {
 
 body {
   margin: 0;
-  padding: 0;
-  min-height: 100vh;
+  padding: var(--body-padding);
+  min-height: calc(100vh - var(--body-padding) * 2);
   color: var(--fg);
   background-color: var(--bg);
+}
+
+h1 {
+  margin: 0;
 }
