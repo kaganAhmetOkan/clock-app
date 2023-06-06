@@ -6,6 +6,7 @@
   --accent: #77c66a;
 
   --body-padding: 1rem;
+  --header-height: 50px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,10 +22,23 @@ html {
 
 body {
   margin: 0;
-  padding: var(--body-padding);
-  min-height: calc(100vh - var(--body-padding) * 2);
+  padding: 0;
+  min-height: 100vh;
   color: var(--fg);
   background-color: var(--bg);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - var(--header-height));
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
 }
 
 h1 {
