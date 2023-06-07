@@ -6,6 +6,15 @@ export function getClock(secs) {
   return `${hours}:${minutes}:${seconds}`;
 };
 
+export function getSensitiveClock(ms) {
+  const hours = ("0" + Math.floor(ms / 1000 / 60 / 60)).slice(-2);
+  const minutes = ("0" + Math.floor(ms / 1000 / 60 % 60)).slice(-2);
+  const seconds = ("0" + Math.floor(ms / 1000 % 60)).slice(-2);
+  const milliseconds = ("0" + Math.floor(ms % 100)).slice(-2);
+
+  return {hours, minutes, seconds, milliseconds};
+}
+
 export function getEpoch() {
   const epoch = Date.now();
   return {

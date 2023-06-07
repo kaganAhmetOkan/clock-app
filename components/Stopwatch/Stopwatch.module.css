@@ -1,0 +1,73 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.clock {
+  text-align: center;
+  font-size: 10vw;
+  color: var(--accent);
+  user-select: none;
+  letter-spacing: 5px;
+  background: linear-gradient(120deg, var(--accent), var(--btn-primary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.clock > span {
+  font-size: 5vw;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.laps {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  flex-grow: 1;
+  height: 30vh;
+  overflow: auto;
+  border: 1px solid var(--btn-secondary);
+  border-radius: 2px;
+  transition: 200ms;
+  font-family: var(--font-mono);
+}
+
+.laps[data-active="false"] {
+  opacity: 0;
+}
+
+.laps > :nth-child(even) {
+  background-color: var(--btn-secondary);
+}
+
+.lap {
+  font-size: 1.2rem;
+  gap: 1rem;
+  display: flex;
+  width: 100%;
+}
+
+.lap > * {
+  flex-grow: 1;
+  width: 100px;
+}
+
+
+.lap > .index {
+  color: var(--accent);
+  text-align: center;
+}
+
+.lapClock {
+  flex-grow: 10;
+}
+
+.lap > .diff {
+  color: var(--btn-primary);
+}

@@ -10,6 +10,8 @@
 
   --body-padding: 1rem;
   --header-height: 50px;
+
+  --font-mono: "Ubuntu Mono", 'Courier New', Courier, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +22,7 @@
 }
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Ubuntu", Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -51,4 +53,28 @@ h3,
 h2,
 h1 {
   margin: 0;
+}
+
+h1 {
+  font-family: var(--font-mono);
+}
+
+button {
+  font-size: 2rem;
+  color: var(--fg);
+  background-color: var(--btn-primary);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  flex-grow: 1;
+  width: 100%;
+  transition: 100ms;
+}
+
+button:hover {
+  background-color: var(--accent);
+}
+
+button:active {
+  scale: 0.9;
 }

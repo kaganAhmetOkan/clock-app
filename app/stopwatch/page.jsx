@@ -1,7 +1,9 @@
-export default function Stopwatch() {
+import Stopwatch from "@/components/Stopwatch/Stopwatch";
+
+export default function StopwatchPage() {
   return (
     <main>
-      Stopwatch
+      <Stopwatch />
     </main>
   );
 };

@@ -24,26 +24,6 @@
   text-align: right;
 }
 
-.button {
-  font-size: 2rem;
-  color: var(--fg);
-  background-color: var(--btn-primary);
-  border: none;
-  border-radius: 2px;
-  cursor: pointer;
-  flex-grow: 1;
-  width: 100%;
-  transition: 200ms;
-}
-
-.button:hover {
-  background-color: var(--accent);
-}
-
-.button:active {
-  scale: 0.9;
-}
-
 .clock {
   text-align: center;
   font-size: 10vw;

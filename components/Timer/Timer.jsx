@@ -38,6 +38,7 @@ export default function Timer() {
       if (targetTime > getEpoch().seconds && !isPaused) {
         setCount(targetTime - getEpoch().seconds);
       } else if (targetTime === getEpoch().seconds) {
+        reset();
         alert("Times Up!");
       }
     }, 1000);
@@ -69,18 +70,15 @@ export default function Timer() {
       <input className={style.input} type="number" inputMode="numeric" min={0} max={59} defaultValue={0}></input>
       <input className={style.input} type="number" inputMode="numeric" min={0} max={59} defaultValue={0}></input>
     </div>
-    <button className={style.button} type="submit">Start</button>
+    <button type="submit">Start</button>
   </form>);
 
   const nodeCountTimer = (
     <div className={style.container}>
       <h1 className={style.clock}>{clock}</h1>
       <div className={style.row}>
-        <button
-          onClick={pause}
-          className={style.button}
-        >{isPaused ? "Resume" : "Pause"}</button>
-        <button onClick={reset} className={style.button}>Reset</button>
+        <button onClick={pause}>{isPaused ? "Resume" : "Pause"}</button>
+        <button onClick={reset}>Reset</button>
       </div>
     </div>
   );
