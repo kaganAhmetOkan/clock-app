@@ -44,7 +44,7 @@
   scale: 0.9;
 }
 
-.countdown {
+.clock {
   text-align: center;
   font-size: 10vw;
   color: var(--accent);

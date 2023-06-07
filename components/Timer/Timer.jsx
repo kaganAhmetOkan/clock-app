@@ -1,48 +1,66 @@
 "use client";
 import style from "./Timer.module.css";
 import { useEffect, useState } from "react";
+import { getClock, getEpoch } from "@/utils/time";
 
 export default function Timer() {
-  const [countdownMS, setCountdownMS] = useState(0);
-  const [countdown, setCountdown] = useState("");
+  const [count, setCount] = useState(0);
+  const [clock, setClock] = useState("");
   const [isPaused, setPaused] = useState(true);
+  const [targetTime, setTargetTime] = useState(0);
+  const [offsetStart, setOffsetStart] = useState(0);
 
-  // TODO: pausing and unpausing doesn't seem to be accurate
-  // time should be tracked with setInterval, check https://stackoverflow.com/questions/21277900/how-can-i-pause-setinterval-functions
-  // TODO: alert the user to confirm leaving page if a countdown is active
+  // TODO: alert the user to confirm leaving page if a clock is active
   // (onBeforeunload) https://www.npmjs.com/package/react-beforeunload
 
+  // TODO: need web audio api to play sounds
+  // for times up sound
+
+  // TODO: can be upgraded to account for milliseconds
 
   function handleSubmit(event) {
     event.preventDefault();
     const hours = Number.parseInt(event.target[0].value) * 60 * 60;
     const minutes = Number.parseInt(event.target[1].value) * 60;
     const seconds = Number.parseInt(event.target[2].value);
-    const value = hours + minutes + seconds;
+    const start = getEpoch().seconds;
+    const target = hours + minutes + seconds + start;
+    setTargetTime(target);
 
-    if (value > 0) {
+    if (target > start) {
       setPaused(false);
-      setCountdownMS(value);
+      setCount(target - start);
     };
   };
 
   useEffect(() => {
-    const count = setInterval(() => {
-      if (countdownMS > 0 && !isPaused) setCountdownMS(countdownMS - 1);
+    const countdown = setInterval(() => {
+      if (targetTime > getEpoch().seconds && !isPaused) {
+        setCount(targetTime - getEpoch().seconds);
+      } else if (targetTime === getEpoch().seconds) {
+        alert("Times Up!");
+      }
     }, 1000);
 
-    return () => clearInterval(count);
-  }, [countdownMS, setCountdownMS, isPaused]);
+    return () => clearInterval(countdown);
+  }, [count, setCount, isPaused, targetTime]);
 
   useEffect(() => {
-    if (countdownMS > 0) {
-      const hours = ("0" + Math.floor((countdownMS - 1) / 60 / 60 % 99)).slice(-2);
-      const minutes = ("0" + Math.floor((countdownMS - 1) / 60 % 60)).slice(-2);
-      const seconds = ("0" + Math.floor((countdownMS - 1) % 60)).slice(-2);
-  
-      setCountdown(`${hours}:${minutes}:${seconds}`);
-    } else setCountdown(`00:00:00`);
-  }, [countdownMS, setCountdownMS]);
+    if (count > 0) setClock(getClock(count));
+    else setClock(`00:00:00`);
+  }, [count, setCount]);
+
+  function reset() {
+    setTargetTime(getEpoch().seconds);
+    setCount(0);
+  };
+
+  function pause() {
+    if (!isPaused) setOffsetStart(getEpoch().seconds);
+    else setTargetTime(targetTime + getEpoch().seconds - offsetStart);
+
+    setPaused(!isPaused);
+  };
 
   const nodeSetTimer = (
   <form className={style.container} onSubmit={(event) => handleSubmit(event)}>
@@ -56,20 +74,20 @@ export default function Timer() {
 
   const nodeCountTimer = (
     <div className={style.container}>
-      <h1 className={style.countdown}>{countdown}</h1>
+      <h1 className={style.clock}>{clock}</h1>
       <div className={style.row}>
         <button
-          onClick={() => setPaused(!isPaused)}
+          onClick={pause}
           className={style.button}
         >{isPaused ? "Resume" : "Pause"}</button>
-        <button onClick={() => setCountdownMS(0)} className={style.button}>Reset</button>
+        <button onClick={reset} className={style.button}>Reset</button>
       </div>
     </div>
   );
 
   return (
     <div className={style.main}>
-      {countdownMS > 0 ? nodeCountTimer : nodeSetTimer}
+      {targetTime > getEpoch().seconds ? nodeCountTimer : nodeSetTimer}
     </div>
   );
 };
