@@ -1,8 +1,11 @@
 :root {
   --fg: #111;
+  --fg-secondary: #111;
   --bg: #eee;
+
   --btn-primary: #7a856b;
   --btn-secondary: #e3e8e3;
+  
   --accent: #77c66a;
 
   --body-padding: 1rem;
@@ -41,6 +44,11 @@ a {
   text-decoration: none;
 }
 
+h6,
+h5,
+h4,
+h3,
+h2,
 h1 {
   margin: 0;
 }

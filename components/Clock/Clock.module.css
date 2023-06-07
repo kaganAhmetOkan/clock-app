@@ -1,5 +1,7 @@
 .main {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .main > h1 {
@@ -11,4 +13,8 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.main > h2 {
+  user-select: none;
 }

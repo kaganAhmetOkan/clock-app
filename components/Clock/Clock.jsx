@@ -4,22 +4,27 @@ import { useState, useEffect } from "react";
 
 export default function Clock() {
   const [time, setTime] = useState();
+  const [dateString, setDateString] = useState();
 
-  function showTime() {
-    const date = new Date();
-    const hours = ("0" + date.getHours()).slice(-2);
-    const minutes = ("0" + date.getMinutes()).slice(-2);
-    const seconds = ("0" + date.getSeconds()).slice(-2);
-    setTime(`${hours}:${minutes}:${seconds}`);
+  useEffect(() => {
+    const showTime = setInterval(() => {
+      const date = new Date();
+      const hours = ("0" + date.getHours()).slice(-2);
+      const minutes = ("0" + date.getMinutes()).slice(-2);
+      const seconds = ("0" + date.getSeconds()).slice(-2);
+      
+      setTime(`${hours}:${minutes}:${seconds}`);
+      setDateString(date.toDateString());
+      console.log("leak test");
+    }, 1000);
     
-    setTimeout(showTime, 1000);
-  };
-
-  useEffect(showTime, []);
+    return () => clearInterval(showTime);
+  }, []);
 
   return (
     <div className={style.main}>
       <h1>{time}</h1>
+      <h2>{dateString}</h2>
     </div>
   )
 }
