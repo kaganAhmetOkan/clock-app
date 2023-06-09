@@ -58,9 +58,33 @@ export default function Timer() {
   const nodeSetTimer = (
   <form className={style.container} onSubmit={(event) => handleSubmit(event)}>
     <div className={style.row}>
-      <input className={style.input} type="number" inputMode="numeric" min={0} max={99} defaultValue={0}></input>
-      <input className={style.input} type="number" inputMode="numeric" min={0} max={59} defaultValue={0}></input>
-      <input className={style.input} type="number" inputMode="numeric" min={0} max={59} defaultValue={0}></input>
+      <label htmlFor="hours" hidden >Hours</label>
+      <input
+        className={style.input}
+        type="number"
+        inputMode="numeric"
+        min={0} max={99}
+        defaultValue={0}
+        id="hours"
+      ></input>
+      <label htmlFor="minutes" hidden >Minutes</label>
+      <input
+        className={style.input}
+        type="number"
+        inputMode="numeric"
+        min={0} max={59}
+        defaultValue={0}
+        id="minutes"
+      ></input>
+      <label htmlFor="seconds" hidden >Seconds</label>
+      <input
+        className={style.input}
+        type="number"
+        inputMode="numeric"
+        min={0} max={59}
+        defaultValue={0}
+        id="seconds"
+      ></input>
     </div>
     <button type="submit">Start</button>
   </form>);
