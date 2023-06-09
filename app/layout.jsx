@@ -4,7 +4,7 @@ import Header from '@/components/Header/Header';
 
 export const metadata = {
   title: 'Clock App',
-  description: 'Simple Clock App',
+  description: 'Simple Clock App, featuring modern stopwatch, timer, and alarm functionalities.',
 };
 
 export const ubuntu = Ubuntu({
