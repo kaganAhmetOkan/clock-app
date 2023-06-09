@@ -3,8 +3,8 @@ import style from "./Clock.module.css";
 import { useState, useEffect } from "react";
 
 export default function Clock() {
-  const [time, setTime] = useState();
-  const [dateString, setDateString] = useState();
+  const [time, setTime] = useState("00:00:00");
+  const [dateString, setDateString] = useState("Today is...");
 
   useEffect(() => {
     const showTime = setInterval(() => {
@@ -15,7 +15,6 @@ export default function Clock() {
       
       setTime(`${hours}:${minutes}:${seconds}`);
       setDateString(date.toDateString());
-      console.log("leak test");
     }, 1000);
     
     return () => clearInterval(showTime);
@@ -28,3 +27,5 @@ export default function Clock() {
     </div>
   )
 }
+
+// Needs loading skeleton
