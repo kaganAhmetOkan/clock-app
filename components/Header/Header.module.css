@@ -13,6 +13,7 @@
   width: 200px;
   text-transform: capitalize;
   font-size: 2rem;
+  user-select: none;
   transition: 200ms;
 }
 
@@ -22,4 +23,11 @@
 
 .link[data-active="true"] {
   background: linear-gradient(120deg, var(--accent), var(--btn-primary));
+}
+
+@media (max-width: 400px) {
+  .link {
+    font-size: 1.5rem;
+    width: 150px;
+  }
 }
