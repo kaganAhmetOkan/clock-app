@@ -1,7 +1,7 @@
 export default function Alarms() {
   return (
     <main>
-      Alarms
+      <h2>Work in progress</h2>
     </main>
   );
 };
