@@ -11,7 +11,7 @@ Then visit [localhost:3000](http://localhost:3000) to see the app in action.
 - [x] simple clock
 - [x] stopwatch
 - [x] timer
-- [ ] mobile responsive
+- [x] mobile responsive
 - [ ] alarms (WIP)
 
 ---

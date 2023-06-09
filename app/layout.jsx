@@ -1,5 +1,5 @@
 import './globals.css';
-import { Inter } from "next/font/google"
+import { Ubuntu, Ubuntu_Mono } from "next/font/google"
 import Header from '@/components/Header/Header';
 
 export const metadata = {
@@ -7,11 +7,23 @@ export const metadata = {
   description: 'Simple Clock App',
 };
 
-const inter = Inter({ subsets: ["latin"] });
+export const ubuntu = Ubuntu({
+  subsets: ["latin"],
+  variable: "--font-ubuntu",
+  weight: "400",
+  display: "swap"
+});
+
+export const ubuntuMono = Ubuntu_Mono({
+  subsets: ["latin"],
+  variable: "--font-ubuntu-mono",
+  weight: "400",
+  display: "swap"
+});
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={`${ubuntu.variable} ${ubuntuMono.variable}`}>
       <body>
         <Header />
         {children}

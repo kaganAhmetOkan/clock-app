@@ -35,7 +35,7 @@
   border: 1px solid var(--btn-secondary);
   border-radius: 2px;
   transition: 200ms;
-  font-family: var(--font-mono);
+  font-family: var(--font-ubuntu-mono);
 }
 
 .laps[data-active="false"] {

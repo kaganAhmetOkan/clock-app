@@ -10,8 +10,6 @@
 
   --body-padding: 1rem;
   --header-height: 50px;
-
-  --font-mono: "Ubuntu Mono", 'Courier New', Courier, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,7 +21,7 @@
 }
 
 html {
-  font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+  font-family: var(--font-ubuntu);
 }
 
 body {
@@ -57,7 +55,7 @@ h1 {
 }
 
 h1 {
-  font-family: var(--font-mono);
+  font-family: var(--font-ubuntu-mono);
 }
 
 button {
