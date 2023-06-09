@@ -5,7 +5,6 @@ import { getClock, getEpoch } from "@/utils/time";
 
 export default function Timer() {
   const [count, setCount] = useState(0);
-  const [clock, setClock] = useState("");
   const [isPaused, setPaused] = useState(true);
   const [targetTime, setTargetTime] = useState(0);
   const [offsetStart, setOffsetStart] = useState(0);
@@ -15,8 +14,6 @@ export default function Timer() {
 
   // TODO: need web audio api to play sounds
   // for times up sound
-
-  // TODO: can be upgraded to account for milliseconds
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -46,11 +43,6 @@ export default function Timer() {
     return () => clearInterval(countdown);
   }, [count, setCount, isPaused, targetTime]);
 
-  useEffect(() => {
-    if (count > 0) setClock(getClock(count));
-    else setClock(`00:00:00`);
-  }, [count, setCount]);
-
   function reset() {
     setTargetTime(getEpoch().seconds);
     setCount(0);
@@ -75,7 +67,7 @@ export default function Timer() {
 
   const nodeCountTimer = (
     <div className={style.container}>
-      <h1 className={style.clock}>{clock}</h1>
+      <h1 className={style.clock}>{getClock(count)}</h1>
       <div className={style.row}>
         <button onClick={pause}>{isPaused ? "Resume" : "Pause"}</button>
         <button onClick={reset}>Reset</button>

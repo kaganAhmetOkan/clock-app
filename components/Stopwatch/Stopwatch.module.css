@@ -46,6 +46,10 @@
   background-color: var(--btn-secondary);
 }
 
+.laps > :first-child {
+  flex-grow: 1;
+}
+
 .lap {
   font-size: 1.2rem;
   gap: 1rem;

@@ -1,6 +1,6 @@
 "use client";
 import style from "./Stopwatch.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getSensitiveClock } from "@/utils/time";
 
 export default function Stopwatch() {
@@ -12,6 +12,7 @@ export default function Stopwatch() {
   const [startTime, setStartTime] = useState(0);
   const [offsetStart, setOffsetStart] = useState(0);
   const [laps, setLaps] = useState([]);
+  const nodeLaps = useRef();
 
   useEffect(() => {
     const countdown = setInterval(() => {
@@ -52,6 +53,14 @@ export default function Stopwatch() {
       } else {
         setLaps([{ count, clock, millisecs, diff: count }]);
       };
+
+      // timeout here to let the element update its height
+      const scrollPosition = nodeLaps.current.scrollHeight;
+      const scrollNode = setTimeout(() => {
+        nodeLaps.current.scroll({ top: -scrollPosition, behavior: "smooth" });
+      }, 50);
+
+      return () => clearTimeout(scrollNode);
     };
   };
 
@@ -80,12 +89,12 @@ export default function Stopwatch() {
       <div className={style.buttons}>
         {isActive ? nodeControls : nodeStart}
       </div>
-      <div className={style.laps} data-active={laps.length > 0}>
+      <div ref={nodeLaps} className={style.laps} data-active={laps.length > 0}>
         {laps.map((lap, index) => {
           const { minutes, seconds, milliseconds } = getSensitiveClock(lap.diff);
 
           return (
-            <div key={lap} className={style.lap}>
+            <div key={lap.count} className={style.lap}>
               <div className={style.index}>{`${index + 1}.`}</div>
               <div className={style.lapClock}>{`${lap.clock}${lap.millisecs}`}</div>
               <div className={style.diff}>{`+ ${minutes}:${seconds}.${milliseconds}`}</div>
@@ -96,5 +105,3 @@ export default function Stopwatch() {
     </div>
   );
 };
-
-// TODO: laps box doesnt auto scroll to top
