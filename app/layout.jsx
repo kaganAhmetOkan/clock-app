@@ -1,4 +1,5 @@
 import './globals.css';
+import { Inter } from "next/font/google"
 import Header from '@/components/Header/Header';
 
 export const metadata = {
@@ -6,9 +7,11 @@ export const metadata = {
   description: 'Simple Clock App',
 };
 
+const inter = Inter({ subsets: ["latin"] });
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className}>
       <body>
         <Header />
         {children}
