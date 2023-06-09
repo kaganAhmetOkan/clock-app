@@ -26,7 +26,7 @@
 
 .clock {
   text-align: center;
-  font-size: 10vw;
+  font-size: max(10vw, 2rem);
   color: var(--accent);
   user-select: none;
   letter-spacing: 5px;

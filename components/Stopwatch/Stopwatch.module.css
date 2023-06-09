@@ -6,7 +6,7 @@
 
 .clock {
   text-align: center;
-  font-size: 10vw;
+  font-size: max(10vw, 2rem);
   color: var(--accent);
   user-select: none;
   letter-spacing: 5px;
@@ -57,19 +57,14 @@
   width: 100%;
 }
 
-.lap > * {
-  flex-grow: 1;
-  width: 100px;
-}
-
-
 .lap > .index {
   color: var(--accent);
   text-align: center;
 }
 
 .lapClock {
-  flex-grow: 10;
+  flex-grow: 1;
+  text-align: center;
 }
 
 .lap > .diff {

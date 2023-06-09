@@ -18,7 +18,7 @@ export default function Stopwatch() {
     const countdown = setInterval(() => {
       if (!isPaused) {
         setCount(Date.now() - startTime);
-      }
+      };
     }, 10);
 
     return () => clearInterval(countdown);
