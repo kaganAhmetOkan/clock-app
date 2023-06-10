@@ -1,7 +1,9 @@
-export default function Alarms() {
+import Alarms from "@/components/Alarms/Alarms";
+
+export default function AlarmsPage({ searchParams }) {
   return (
     <main>
-      <h2>Work in progress</h2>
+      <Alarms searchParams={searchParams} />
     </main>
   );
 };

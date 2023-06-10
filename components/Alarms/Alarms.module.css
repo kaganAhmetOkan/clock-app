@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  gap: 0.5rem;
+}
+
+.alarms {
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  overflow: auto;
+  border: 1px solid var(--btn-secondary);
+}

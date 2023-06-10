@@ -78,6 +78,10 @@ button:active {
   scale: 0.9;
 }
 
+input {
+  font-family: var(--font-ubuntu-mono);
+}
+
 @media (max-width: 800px) {
   button {
     font-size: 1.5rem;

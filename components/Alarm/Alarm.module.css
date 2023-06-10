@@ -1,0 +1,47 @@
+.main {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  user-select: none;
+  padding: 0.2rem 0.5rem;
+}
+
+.main:nth-child(even) {
+  background-color: var(--btn-secondary);
+}
+
+.clock {
+  font-family: var(--font-ubuntu-mono);
+  letter-spacing: 5px;
+}
+
+.title {
+  flex-grow: 1;
+}
+
+.delete {
+  width: 32px; height: 32px;
+  flex-grow: 0;
+  position: relative;
+}
+
+.delete > div {
+  width: 24px; height: 2px;
+  background-color: var(--bg);
+  position: absolute;
+  rotate: 45deg;
+  transition: 200ms;
+}
+
+.delete > :last-child {
+  rotate: 135deg;
+}
+
+.delete:hover > div {
+  rotate: 135deg;
+}
+
+.delete:hover > :last-child {
+  rotate: 45deg;
+}

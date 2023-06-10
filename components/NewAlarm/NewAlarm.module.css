@@ -1,0 +1,47 @@
+.main {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  user-select: none;
+  padding: 0 0.5rem;
+  border: 1px solid transparent;
+}
+
+.main > input {
+  font-size: 1.5rem;
+  color: var(--fg);
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.newHours {
+  text-align: center;
+  width: 3rem;
+}
+
+.newTitle {
+  font-family: var(--font-ubuntu);
+  display: flex;
+  flex-grow: 1;
+  width: 8rem;
+}
+
+.submit {
+  position: relative;
+  width: 32px; height: 32px;
+  flex-grow: 0;
+}
+
+.submit > div {
+  width: 24px;
+  height: 2px;
+  background-color: var(--bg);
+  position: absolute;
+}
+
+.submit > :last-child {
+  rotate: 90deg;
+}
