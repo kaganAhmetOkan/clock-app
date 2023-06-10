@@ -12,12 +12,6 @@ export default function Alarms({ searchParams }) {
   const [alarms, setAlarms] = useState([]);
   const router = useRouter();
 
-  function deleteAlarm(id) {
-    if (typeof id === "string") id = Number.parseInt(id);
-    const index = alarms.findIndex(alarm => alarm.id.toString() === id);
-    if (index < 0) return new Error(`Alarm not found: ${id}`);
-  };
-
   useEffect(() => {
     const savedAlarms = pullLocal("alarms");
     if (savedAlarms) setAlarms(savedAlarms);
