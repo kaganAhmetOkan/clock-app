@@ -6,9 +6,9 @@ export function getClock(secs) {
   return `${hours}:${minutes}:${seconds}`;
 };
 
-export function getClock24(secs) {
-  const hours = ("0" + Math.floor(secs / 60 / 60 % 24)).slice(-2);
-  const minutes = ("0" + Math.floor(secs / 60 % 60)).slice(-2);
+export function getClock24(mins) {
+  const hours = ("0" + Math.floor(mins / 60 % 24)).slice(-2);
+  const minutes = ("0" + Math.floor(mins % 60)).slice(-2);
 
   return { hours, minutes };
 }

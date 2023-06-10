@@ -21,7 +21,9 @@ export default function NewAlarm() {
       targetDate.setDate(targetDate.getDate() + 1);
     };
 
-    router.replace(`/alarms?t=${t}&date=${targetDate.getTime()}&offset=${targetDate.getTimezoneOffset()}`);
+    const targetTime = Math.floor(targetDate.getTime() / 1000 / 60);
+
+    router.replace(`/alarms?t=${t}&date=${targetTime}&offset=${targetDate.getTimezoneOffset()}`);
   };
 
   return (

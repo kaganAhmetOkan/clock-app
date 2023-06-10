@@ -10,8 +10,7 @@ export default function Alarm({ alarm }) {
     router.replace(`/alarms?del=${alarm.id}`);
   };
 
-  // divided by 1000 to convert to seconds from milliseconds and then converted to local time
-  const { hours, minutes } = getClock24( alarm.targetDate / 1000 - alarm.targetOffset * 60 );
+  const { hours, minutes } = getClock24( alarm.targetDate - alarm.targetOffset );
 
   return (
     <div className={style.main}>
