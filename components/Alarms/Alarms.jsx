@@ -16,9 +16,11 @@ export default function Alarms({ searchParams }) {
     if (!searchParams) return;
 
     // handle add event
-    const { h: hours, m: minutes, t: title, del: delID } = searchParams;
-    if (hours && minutes && title) {
-      const newAlarm = { hours, minutes, title, id: Date.now() };
+    const { date, offset, t: title, del: delID } = searchParams;
+    if (date && title && offset) {
+      const targetDate = Number.parseInt(date);
+      const targetOffset = Number.parseInt(offset);
+      const newAlarm = { targetDate, targetOffset, title, id: Date.now() };
       setAlarms(alarms => [newAlarm, ...alarms]);
     };
     

@@ -1,3 +1,4 @@
+"use client";
 import style from "./NewAlarm.module.css";
 import { useRouter } from "next/navigation";
 
@@ -6,14 +7,21 @@ export default function NewAlarm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const h = event.target[0].value;
-    const m = event.target[1].value;
+    const h = Number.parseInt(event.target[0].value);
+    const m = Number.parseInt(event.target[1].value);
     const t = event.target[2].value;
 
-    if (h && m && t){
-      const searchParams = new URLSearchParams({ h, m, t }).toString();
-      router.replace(`/alarms?${searchParams}`);
+    const currentDate = new Date();
+    const targetDate = new Date();
+    targetDate.setHours(h);
+    targetDate.setMinutes(m);
+    targetDate.setSeconds(0);
+
+    if (targetDate.getHours() < currentDate.getHours() || (targetDate.getHours() === currentDate.getHours() && targetDate.getMinutes() <= currentDate.getMinutes())) {
+      targetDate.setDate(targetDate.getDate() + 1);
     };
+
+    router.replace(`/alarms?t=${t}&date=${targetDate.getTime()}&offset=${targetDate.getTimezoneOffset()}`);
   };
 
   return (
@@ -28,6 +36,7 @@ export default function NewAlarm() {
         inputMode="numeric"
         min={0}
         max={24}
+        required
       ></input>
       :
       <label htmlFor="newMinutes" hidden >Minutes</label>
@@ -40,7 +49,7 @@ export default function NewAlarm() {
         inputMode="numeric"
         min={0}
         max={59}
-        step={5}
+        required
       ></input>
       <label htmlFor="newTitle" hidden >Title</label>
       <input
@@ -49,6 +58,7 @@ export default function NewAlarm() {
         name="t"
         defaultValue="New Alarm"
         autoComplete="off"
+        required
       ></input>
       <button type="submit" className={style.submit}>
         <div></div>
