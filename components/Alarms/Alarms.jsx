@@ -44,11 +44,16 @@ export default function Alarms({ searchParams }) {
 
   useEffect(() => {
     const clock = setInterval(() => {
+      if (alarms.length === 0) return;
       const now = Math.floor(Date.now() / 1000 / 60);
       const newAlarms = [];
       alarms?.forEach((alarm) => {
         const { hours, minutes } = getClock24(alarm.targetDate - alarm.targetOffset);
-        if (alarm.targetDate === now) alert(`${alarm.title} (${hours}:${minutes}) went off`);
+        if (alarm.targetDate === now) {
+          // settimeout here to make alert async, otherwise alert pauses the javascript, which messes with clock
+          const alarmAlert = setTimeout(() => alert(`${alarm.title} (${hours}:${minutes}) went off`), 1);
+          return () => clearTimeout(alarmAlert);
+        }
         else newAlarms.push(alarm);
       });
 
@@ -75,11 +80,9 @@ export default function Alarms({ searchParams }) {
 // TODO: Option to set repeat on alarms
 // TODO: option to set repeat on specific days on alarms
 // TODO: option to edit alarms
-// TODO: a countdown in alarm telling in how many minutes the alarm will go off.
-// TODO: clock interval isnt precise (runs every 30s)
+// TODO: a countdown in alarm telling in how many minutes the alarm will go off
 // TODO: alarms that went off when the app was closed should alert the user when the app opens
 
-// BUG: alert goes off twice
 // BUG: both the clock and alarm components have an interval for updating time, that runs every same seconds. This is inefficient can these two intervals could be merged
 
 // TODO: idea: get every component to run in the same page, side by side, each containing 100vw. When the user selects one of the components in header, the component outside of the screen smoothly slides in. This would solve the multiple time intervals problem, get rid of multiple pages, and allows everything to run in the same place.
